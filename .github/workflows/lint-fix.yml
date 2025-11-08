@@ -1,0 +1,42 @@
+name: Lint Auto-fix (create PR)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  eslint-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ESLint --fix
+        id: eslint_fix
+        run: |
+          pnpm run lint:fix || true
+          git status --porcelain
+
+      - name: Create PR with fixes
+        if: steps.eslint_fix.outcome == 'success'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: chore: apply ESLint --fix changes
+          branch: eslint-fixes-${{ github.event.number }}
+          title: chore: ESLint --fix applied
+          body: "This PR was created automatically to apply ESLint --fix changes. Review and merge if acceptable."
+          base: ${{ github.head_ref }}
