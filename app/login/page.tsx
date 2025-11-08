@@ -32,12 +32,12 @@ export default function LoginPage() {
         backgroundSize: "cover",
       }}
     >
-      {/* overlay for contrast */}
+  {/* Capa de superposición para mejorar el contraste */}
       <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
       <div className="relative z-10 container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl">
-          {/* Left: Hero / landing info */}
+          {/* Izquierda: Hero / información de la landing */}
           <div className="px-6 py-12 text-white">
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Welcome to ILAN</h2>
             <p className="text-lg mb-6 max-w-xl opacity-90">Learn, build and grow. Sign in to continue to your dashboard where your progress, projects and mentorship await.</p>
@@ -57,7 +57,7 @@ export default function LoginPage() {
             </ul>
           </div>
 
-          {/* Right: Login Card */}
+          {/* Derecha: Tarjeta de inicio de sesión */}
           <div className="flex items-center justify-center px-6 py-12">
             <Card className="w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-10 relative z-10 border border-gray-200">
               <div className="text-center mb-6">

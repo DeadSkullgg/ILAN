@@ -1,0 +1,16 @@
+#!/bin/sh
+# Hook simple que recuerda al autor escribir los mensajes de commit en español.
+# No bloquea el commit; solo muestra un recordatorio.
+
+MSG_FILE="$1"
+MSG_CONTENT=$(cat "$MSG_FILE")
+
+echo "" >&2
+echo "========== RECORDATORIO DE COMMIT (ESPANOL) ==========" >&2
+echo "Por favor escribe tus mensajes de commit en español. Ejemplos: 'feat: ...', 'fix: ...' en español." >&2
+echo "Mensaje actual:" >&2
+echo "-----------------------------------------------" >&2
+echo "$MSG_CONTENT" >&2
+echo "-----------------------------------------------" >&2
+# Salimos con 0 para no bloquear.
+exit 0
